@@ -8,6 +8,10 @@ using UnityEngine;
 
 public class TCPTestClient : MonoBehaviour
 {
+	//texture to receive
+	public Texture2D receiveTexture;
+	public byte[] receiveBytes;
+
 	#region private members 	
 	private TcpClient socketConnection;
 	private Thread clientReceiveThread;
@@ -20,10 +24,12 @@ public class TCPTestClient : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		/*
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			SendMessage();
 		}
+		*/
 	}
 	/// <summary> 	
 	/// Setup socket connection. 	
@@ -49,7 +55,7 @@ public class TCPTestClient : MonoBehaviour
 		try
 		{
 			socketConnection = new TcpClient("localhost", 8052);
-			Byte[] bytes = new Byte[1024];
+			Byte[] bytes = new Byte[111224];
 			while (true)
 			{
 				// Get a stream object for reading 				
@@ -61,9 +67,10 @@ public class TCPTestClient : MonoBehaviour
 					{
 						var incommingData = new byte[length];
 						Array.Copy(bytes, 0, incommingData, 0, length);
-						// Convert byte array to string message. 						
-						string serverMessage = Encoding.ASCII.GetString(incommingData);
-						Debug.Log("server message received as: " + serverMessage);
+						// Convert byte array to string message.
+						receiveBytes = incommingData;
+						//string serverMessage = Encoding.ASCII.GetString(incommingData);
+						//Debug.Log("server message received as: " + serverMessage);
 					}
 				}
 			}
