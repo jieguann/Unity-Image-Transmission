@@ -12,7 +12,7 @@ public class TCPTestServer : MonoBehaviour
 	#region private members 
 	//Textrure initialize
 	public Texture2D textureToSend;
-
+	byte[] ImageBytes;
 	/// <summary> 	
 	/// TCPListener to listen for incomming TCP connection 	
 	/// requests. 	
@@ -40,6 +40,8 @@ public class TCPTestServer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		ImageBytes = textureToSend.EncodeToPNG();
+
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			SendMessage();
