@@ -6,9 +6,12 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TCPTestServer : MonoBehaviour
 {
+	public RawImage m_RawImage;
+
 	#region private members 
 	//Textrure initialize
 	//For video Testing value
@@ -49,7 +52,9 @@ public class TCPTestServer : MonoBehaviour
 
 	// Update is called once per frame
 	void Update()
+		
 	{
+		m_RawImage.texture = textureToSend;
 		videoTexture = toTexture2D(renderTexture);
 
 		//Enable this when testing video
