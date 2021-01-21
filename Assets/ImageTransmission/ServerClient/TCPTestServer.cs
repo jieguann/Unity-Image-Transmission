@@ -41,11 +41,8 @@ public class TCPTestServer : MonoBehaviour
 	void Update()
 	{
 		ImageBytes = textureToSend.EncodeToPNG();
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			SendMessage();
-		}
+		SendMessage();
+		
 	}
 
 	/// <summary> 	
@@ -74,8 +71,8 @@ public class TCPTestServer : MonoBehaviour
 							var incommingData = new byte[length];
 							Array.Copy(bytes, 0, incommingData, 0, length);
 							// Convert byte array to string message. 							
-							string clientMessage = Encoding.ASCII.GetString(incommingData);
-							Debug.Log("client message received as: " + clientMessage);
+							//string clientMessage = Encoding.ASCII.GetString(incommingData);
+							//Debug.Log("client message received as: " + clientMessage);
 						}
 					}
 				}

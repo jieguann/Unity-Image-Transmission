@@ -20,10 +20,12 @@ public class TCPTestClient : MonoBehaviour
 	void Start()
 	{
 		ConnectToTcpServer();
+		receiveTexture = new Texture2D(2, 2);
 	}
 	// Update is called once per frame
 	void Update()
-	{
+	{   //Load Byte to texture2d
+		receiveTexture.LoadImage(receiveBytes);
 		/*
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
@@ -69,6 +71,7 @@ public class TCPTestClient : MonoBehaviour
 						Array.Copy(bytes, 0, incommingData, 0, length);
 						// Convert byte array to string message.
 						receiveBytes = incommingData;
+						
 						//string serverMessage = Encoding.ASCII.GetString(incommingData);
 						//Debug.Log("server message received as: " + serverMessage);
 					}
