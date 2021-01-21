@@ -43,6 +43,8 @@ public class TCPTestServer : MonoBehaviour
 		tcpListenerThread = new Thread(new ThreadStart(ListenForIncommingRequests));
 		tcpListenerThread.IsBackground = true;
 		tcpListenerThread.Start();
+
+		StartCoroutine(waiter());
 	}
 
 	// Update is called once per frame
@@ -54,7 +56,16 @@ public class TCPTestServer : MonoBehaviour
 		textureToSend = videoTexture;
 
 		ImageBytes = textureToSend.EncodeToPNG();
-		SendMessage();
+		
+		
+	}
+
+	IEnumerator waiter()
+    {
+        while (true) {
+			SendMessage();
+			yield return new WaitForSeconds(0.02f);
+		}
 		
 	}
 

@@ -64,7 +64,7 @@ public class TCPTestClient : MonoBehaviour
 		try
 		{
 			socketConnection = new TcpClient(IPaddress, 8052);
-			Byte[] bytes = new Byte[111224];
+			Byte[] bytes = new Byte[49245];
 			while (true)
 			{
 				// Get a stream object for reading 				
