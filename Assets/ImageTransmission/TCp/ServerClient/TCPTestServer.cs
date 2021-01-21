@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class TCPTestServer : MonoBehaviour
 {
 	public RawImage m_RawImage;
-
+	public String IP;
 	#region private members 
 	//Textrure initialize
 	//For video Testing value
@@ -82,7 +82,7 @@ public class TCPTestServer : MonoBehaviour
 		try
 		{
 			// Create listener on localhost port 8052. 			
-			tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 8052);
+			tcpListener = new TcpListener(IPAddress.Parse(IP), 8052);
 			tcpListener.Start();
 			Debug.Log("Server is listening");
 			Byte[] bytes = new Byte[1024];

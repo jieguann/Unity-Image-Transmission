@@ -39,6 +39,7 @@ namespace M2MqttUnity.Examples
         public float sensor1;
         public float sensor2;
         public float light;
+        public byte[] receiveByte;
 
 
         public void TestPublish()
@@ -103,7 +104,7 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnected();
 
-            while(true){ TestPublish(); }
+            TestPublish();
             
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
             /*
@@ -116,7 +117,7 @@ namespace M2MqttUnity.Examples
 
         protected override void SubscribeTopics()
         {
-            client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/sensor1" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { "jie/guan" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/sensor2" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/light" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
@@ -205,12 +206,11 @@ namespace M2MqttUnity.Examples
             StoreMessage(msg);
             //Data = JsonMapper.ToObject(msg);
 
-            if (topic == "ocad/creationandcomputation/experiment3/sensor1")
+            if (topic == "jie/guan")
             {
                 //print("1: " + Single.Parse(msg));
                 //print(msg.GetType());
-                sensor1 = Single.Parse(msg);
-                print("topic1: "+ sensor1);
+                receiveByte = message;
             }
 
             if (topic == "ocad/creationandcomputation/experiment3/sensor2")
@@ -246,7 +246,7 @@ namespace M2MqttUnity.Examples
         {
             base.Update(); // call ProcessMqttEvents()
             byteToSend = videoTexture.ImageBytes;
-
+            //TestPublish();
             //ProcessMessage(msg);
             /*
             if (eventMessages.Count > 0)
