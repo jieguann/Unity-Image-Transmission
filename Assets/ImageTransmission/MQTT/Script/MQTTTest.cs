@@ -22,6 +22,7 @@ namespace M2MqttUnity.Examples
     public class MQTTTest : M2MqttUnityClient
     {
         public videoToTexture2d videoTexture;
+        byte[] byteToSend;
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
        
@@ -42,9 +43,9 @@ namespace M2MqttUnity.Examples
 
         public void TestPublish()
         {
-            byte[] byteToSend = videoTexture.ImageBytes;
+            
             //client.Publish("M2MQTT_Unity/test", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-            client.Publish("M2MQTT_Unity/test", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            client.Publish("jie/guan", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             print("Test message published");
             //AddUiMessage("Test message published.");
         }
@@ -95,12 +96,15 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnecting();
             //SetUiMessage("Connecting to broker on " + brokerAddress + ":" + brokerPort.ToString() + "...\n");
+            
         }
 
         protected override void OnConnected()
         {
             base.OnConnected();
-            TestPublish();
+
+            while(true){ TestPublish(); }
+            
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
             /*
             if (autoTest)
@@ -241,6 +245,8 @@ namespace M2MqttUnity.Examples
         protected override void Update()
         {
             base.Update(); // call ProcessMqttEvents()
+            byteToSend = videoTexture.ImageBytes;
+
             //ProcessMessage(msg);
             /*
             if (eventMessages.Count > 0)
