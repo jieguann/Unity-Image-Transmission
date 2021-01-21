@@ -12,6 +12,7 @@ using LitJson;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
+/// Explaration http://blog.jorand.io/2017/08/02/MQTT-on-Unity/
 /// </summary>
 namespace M2MqttUnity.Examples
 {
@@ -20,6 +21,7 @@ namespace M2MqttUnity.Examples
     /// </summary>
     public class MQTTTest : M2MqttUnityClient
     {
+        public videoToTexture2d videoTexture;
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
        
@@ -40,7 +42,9 @@ namespace M2MqttUnity.Examples
 
         public void TestPublish()
         {
-            client.Publish("M2MQTT_Unity/test", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            byte[] byteToSend = videoTexture.ImageBytes;
+            //client.Publish("M2MQTT_Unity/test", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            client.Publish("M2MQTT_Unity/test", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
             print("Test message published");
             //AddUiMessage("Test message published.");
         }
@@ -96,12 +100,14 @@ namespace M2MqttUnity.Examples
         protected override void OnConnected()
         {
             base.OnConnected();
+            TestPublish();
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
-
+            /*
             if (autoTest)
             {
                 TestPublish();
             }
+            */
         }
 
         protected override void SubscribeTopics()
