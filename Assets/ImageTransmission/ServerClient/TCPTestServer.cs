@@ -12,7 +12,7 @@ public class TCPTestServer : MonoBehaviour
 	#region private members 
 	//Textrure initialize
 	public Texture2D textureToSend;
-	byte[] ImageBytes;
+	public byte[] ImageBytes;
 	/// <summary> 	
 	/// TCPListener to listen for incomming TCP connection 	
 	/// requests. 	
@@ -102,12 +102,12 @@ public class TCPTestServer : MonoBehaviour
 			NetworkStream stream = connectedTcpClient.GetStream();
 			if (stream.CanWrite)
 			{
-				string serverMessage = "This is a message from your server.";
+				//string serverMessage = "This is a message from your server.";
 				// Convert string message to byte array.                 
-				byte[] serverMessageAsByteArray = Encoding.ASCII.GetBytes(serverMessage);
+				//byte[] serverMessageAsByteArray = Encoding.ASCII.GetBytes(serverMessage);
 				// Write byte array to socketConnection stream.               
-				stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
-				Debug.Log("Server sent his message - should be received by client");
+				stream.Write(ImageBytes, 0, ImageBytes.Length);
+				//Debug.Log("Server sent his message - should be received by client");
 			}
 		}
 		catch (SocketException socketException)
