@@ -9,7 +9,10 @@ using UnityEngine;
 
 public class TCPTestServer : MonoBehaviour
 {
-	#region private members 	
+	#region private members 
+	//Textrure initialize
+	public Texture2D textureToSend;
+
 	/// <summary> 	
 	/// TCPListener to listen for incomming TCP connection 	
 	/// requests. 	
