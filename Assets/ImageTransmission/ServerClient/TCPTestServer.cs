@@ -11,7 +11,15 @@ public class TCPTestServer : MonoBehaviour
 {
 	#region private members 
 	//Textrure initialize
+	//For video Testing value
+	public RenderTexture renderTexture;
+	Texture2D videoTexture;
+
+
+	//For Image Testing Drag the image to here
+	//For video should make textureToSend = videoTexture in update;
 	public Texture2D textureToSend;
+
 	public byte[] ImageBytes;
 	/// <summary> 	
 	/// TCPListener to listen for incomming TCP connection 	
@@ -40,6 +48,11 @@ public class TCPTestServer : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		videoTexture = toTexture2D(renderTexture);
+
+		//Enable this when testing video
+		textureToSend = videoTexture;
+
 		ImageBytes = textureToSend.EncodeToPNG();
 		SendMessage();
 		
@@ -111,5 +124,16 @@ public class TCPTestServer : MonoBehaviour
 		{
 			Debug.Log("Socket exception: " + socketException);
 		}
+	}
+
+
+	//Convert Render Texture to Texture2D
+	Texture2D toTexture2D(RenderTexture rTex)
+	{
+		Texture2D tex = new Texture2D(512, 512, TextureFormat.RGB24, false);
+		RenderTexture.active = rTex;
+		tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
+		tex.Apply();
+		return tex;
 	}
 }
