@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class TCPTestClient : MonoBehaviour
 {
+	public string IPaddress;
+
+
 	public RawImage m_RawImage;
 	//texture to receive
 	public Texture2D receiveTexture;
@@ -60,7 +63,7 @@ public class TCPTestClient : MonoBehaviour
 	{
 		try
 		{
-			socketConnection = new TcpClient("localhost", 8052);
+			socketConnection = new TcpClient(IPaddress, 8052);
 			Byte[] bytes = new Byte[111224];
 			while (true)
 			{

@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d48467b43459b14dbc3ac3709699ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IPaddress: localhost
   m_RawImage: {fileID: 1288654995}
   receiveTexture: {fileID: 0}
   receiveBytes: 
