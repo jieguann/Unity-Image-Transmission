@@ -5,12 +5,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TCPTestClient : MonoBehaviour
 {
 	//texture to receive
 	public Texture2D receiveTexture;
 	public byte[] receiveBytes;
+	public RawImage m_RawImage;
 
 	#region private members 	
 	private TcpClient socketConnection;
@@ -26,6 +28,7 @@ public class TCPTestClient : MonoBehaviour
 	void Update()
 	{   //Load Byte to texture2d
 		receiveTexture.LoadImage(receiveBytes);
+		m_RawImage.texture = receiveTexture;
 		/*
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
