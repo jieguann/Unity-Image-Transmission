@@ -103,7 +103,7 @@ namespace M2MqttUnity.Examples
         protected override void OnConnected()
         {
             base.OnConnected();
-            //while (true) { }
+            while (true) { }
             TestPublish();
             
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
