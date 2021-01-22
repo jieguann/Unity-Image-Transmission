@@ -105,7 +105,8 @@ namespace M2MqttUnity.Examples
             base.OnConnected();
             //while (true) { }
             TestPublish();
-            
+            //client.Publish("jie/guan", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
             /*
             if (autoTest)
@@ -241,7 +242,7 @@ namespace M2MqttUnity.Examples
             //AddUiMessage("Received: " + msg);
             print(msg);
         }
-
+        
         protected override void Update()
         {
             base.Update(); // call ProcessMqttEvents()
