@@ -8,7 +8,7 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using M2MqttUnity;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using LitJson;
+//using LitJson;
 
 /// <summary>
 /// Examples for the M2MQTT library (https://github.com/eclipse/paho.mqtt.m2mqtt),
@@ -29,7 +29,7 @@ namespace M2MqttUnity.Examples
 
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
-        private JsonData Data;
+        //private JsonData Data;
 
         public string topic1;
         public string topic2;
