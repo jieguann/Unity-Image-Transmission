@@ -1,13 +1,8 @@
 # Unity-Image-Transmission
  
+This experiment using MQTT to provide an image and video transmission framework between different agents. Through Encode the Texture2D into byte in Unity, the data is able to streaming through MQTT. 
+
 Reference
 
-TCP Client-Server Communication
-https://gist.github.com/danielbierwirth/0636650b005834204cb19ef5ae6ccedb
+https://github.com/gpvigano/M2MqttUnity
 
-Unity Encode Image to PNG(bytes)
-https://docs.unity3d.com/560/Documentation/ScriptReference/Texture2D.EncodeToPNG.html
-
-Server: Sending Image
-
-Client: Reciving Image
