@@ -104,7 +104,7 @@ namespace M2MqttUnity.Examples
         {
             base.OnConnected();
             //while (true) { }
-            TestPublish();
+            //TestPublish();
             //client.Publish("jie/guan", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
 
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
