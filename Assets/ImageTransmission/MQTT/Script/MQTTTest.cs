@@ -103,7 +103,7 @@ namespace M2MqttUnity.Examples
         protected override void OnConnected()
         {
             base.OnConnected();
-
+            //while (true) { }
             TestPublish();
             
             //SetUiMessage("Connected to broker on " + brokerAddress + "\n");
@@ -246,6 +246,7 @@ namespace M2MqttUnity.Examples
         {
             base.Update(); // call ProcessMqttEvents()
             byteToSend = videoTexture.ImageBytes;
+            
             //TestPublish();
             //ProcessMessage(msg);
             /*
