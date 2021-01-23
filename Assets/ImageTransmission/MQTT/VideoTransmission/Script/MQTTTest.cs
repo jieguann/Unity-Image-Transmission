@@ -22,7 +22,7 @@ namespace M2MqttUnity.Examples
     public class MQTTTest : M2MqttUnityClient
     {
         public videoToTexture2d videoTexture;
-        byte[] byteToSend;
+        public byte[] byteToSend;
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
        
