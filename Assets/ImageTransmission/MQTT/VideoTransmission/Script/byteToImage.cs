@@ -15,7 +15,7 @@ public class byteToImage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        receiveTexture = new Texture2D(2, 2,TextureFormat.RGB24,false);
+        receiveTexture = new Texture2D(2, 2,TextureFormat.RGBA32,false);
     }
 
     // Update is called once per frame
