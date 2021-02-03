@@ -118,7 +118,7 @@ namespace M2MqttUnity.Examples
 
         protected override void SubscribeTopics()
         {
-            client.Subscribe(new string[] { "jie/guan" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { "teletouch/depthImage" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/sensor2" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/light" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
@@ -207,7 +207,7 @@ namespace M2MqttUnity.Examples
             StoreMessage(msg);
             //Data = JsonMapper.ToObject(msg);
 
-            if (topic == "jie/guan")
+            if (topic == "teletouch/depthImage")
             {
                 //print("1: " + Single.Parse(msg));
                 //print(msg.GetType());
