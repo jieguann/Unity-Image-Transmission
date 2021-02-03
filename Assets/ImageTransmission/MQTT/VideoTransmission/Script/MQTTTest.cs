@@ -21,7 +21,7 @@ namespace M2MqttUnity.Examples
     /// </summary>
     public class MQTTTest : M2MqttUnityClient
     {
-        public videoToTexture2d videoTexture;
+        //public videoToTexture2d videoTexture;
         public byte[] byteToSend;
         [Tooltip("Set this to true to perform a testing cycle automatically on startup")]
         public bool autoTest = false;
@@ -30,7 +30,7 @@ namespace M2MqttUnity.Examples
         private List<string> eventMessages = new List<string>();
         private bool updateUI = false;
         //private JsonData Data;
-
+        /*
         public string topic1;
         public string topic2;
         public string topic3;
@@ -39,15 +39,16 @@ namespace M2MqttUnity.Examples
         public float sensor1;
         public float sensor2;
         public float light;
-        public byte[] receiveByte;
+        */
+        public byte[] DepthImageByte, ColorImageByte, HumanImageByte;
 
 
         public void TestPublish()
         {
             
             //client.Publish("M2MQTT_Unity/test", System.Text.Encoding.UTF8.GetBytes("Test message"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-            client.Publish("jie/guan", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
-            print("Test message published");
+            //client.Publish("jie/guan", byteToSend, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, false);
+            //print("Test message published");
             //AddUiMessage("Test message published.");
         }
 
@@ -119,14 +120,14 @@ namespace M2MqttUnity.Examples
         protected override void SubscribeTopics()
         {
             client.Subscribe(new string[] { "teletouch/depthImage" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-            client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/sensor2" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
-            client.Subscribe(new string[] { "ocad/creationandcomputation/experiment3/light" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { "teletouch/colorImage" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { "teletouch/humanImage" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
         }
 
         protected override void UnsubscribeTopics()
         {
-            //client.Unsubscribe(new string[] { "M2MQTT_Unity/test" });
+            client.Unsubscribe(new string[] { "teletouch/depthImage" });
         }
 
         protected override void OnConnectionFailed(string errorMessage)
@@ -202,39 +203,41 @@ namespace M2MqttUnity.Examples
 
         protected override void DecodeMessage(string topic, byte[] message)
         {
-            string msg = System.Text.Encoding.UTF8.GetString(message);
+            //string msg = System.Text.Encoding.UTF8.GetString(message);
             
-            StoreMessage(msg);
+            //StoreMessage(msg);
             //Data = JsonMapper.ToObject(msg);
 
             if (topic == "teletouch/depthImage")
             {
                 //print("1: " + Single.Parse(msg));
                 //print(msg.GetType());
-                receiveByte = message;
+                DepthImageByte = message;
             }
 
-            if (topic == "ocad/creationandcomputation/experiment3/sensor2")
+            if (topic == "teletouch/colorImage")
             {
                 //print("1: " + Single.Parse(msg));
                 //print(msg.GetType());
-                sensor2 = Single.Parse(msg);
-                print("topic2: " + sensor2);
+                //sensor2 = Single.Parse(msg);
+                //print("topic2: " + sensor2);
+                ColorImageByte = message;
             }
 
-            if (topic == "ocad/creationandcomputation/experiment3/light")
+            if (topic == "teletouch/humanImage")
             {
                 //print("1: " + Single.Parse(msg));
                 //print(msg.GetType());
-                light = Single.Parse(msg);
-                print("light: " + light);
+                //light = Single.Parse(msg);
+                //print("light: " + light);
+                HumanImageByte = message;
             }
 
         }
 
         private void StoreMessage(string eventMsg)
         {
-            eventMessages.Add(eventMsg);
+            //eventMessages.Add(eventMsg);
         }
 
         private void ProcessMessage(string msg)
@@ -246,7 +249,7 @@ namespace M2MqttUnity.Examples
         protected override void Update()
         {
             base.Update(); // call ProcessMqttEvents()
-            byteToSend = videoTexture.ImageBytes;
+            //byteToSend = videoTexture.ImageBytes;
             
             //TestPublish();
             //ProcessMessage(msg);
