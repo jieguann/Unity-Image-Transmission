@@ -19,10 +19,16 @@ public class byteToImage : MonoBehaviour
         ColorreceiveTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
         HumanreceiveTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
 
-        StartCoroutine(waiter());
+        //StartCoroutine(waiter());
+    }
+
+    private void Update()
+    {
+        DecodeToImage();
     }
 
 
+    /*
     IEnumerator waiter()
     {
         yield return new WaitForSeconds(0.1f);
@@ -39,6 +45,8 @@ public class byteToImage : MonoBehaviour
 
 
     }
+
+    */
     // Update is called once per frame
     void DecodeToImage()
     {
